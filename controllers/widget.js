@@ -197,9 +197,14 @@ exports.isOpen = function(){
 var doItemclick = _.debounce(function(e){
 	doClick();
 
+	_.delay(function() {
+
 	$.widget.fireEvent('itemclick', _.extend({
 		index: parseInt(e.source.id.replace(/^__child/, ''), 10)
 	}, e));
+
+	}, ITEMS.length ? ITEMS.length * 75 : 100);
+
 }, 500, true);
 
 $.on = function(event, callback){
